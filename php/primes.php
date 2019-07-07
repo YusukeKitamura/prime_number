@@ -3,8 +3,6 @@
     primes.php -- 素数（PHP）
     php primes.php
 ***********************************************************/
-
-
 class Primes
 {
     public function generate_primes($total) {
@@ -24,7 +22,7 @@ class Primes
             }
         }
         return $primes;
-	}
+    }
 }
 
 echo "素数表 PHP\n";

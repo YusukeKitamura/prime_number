@@ -3,7 +3,7 @@
     最適化なし
     g++ primes.cpp -o primes (またはclang++ primes.cpp -o primes)
     最適化あり
-    g++ -O3 primes.c -o primes (またはclang++ -O3 primes.c -o primes)
+    g++ -O3 primes.cpp -o primes (またはclang++ -O3 primes.cpp -o primes)
     ./primes
 ***********************************************************/
 #include <iostream>
@@ -32,7 +32,7 @@ int* generate_primes(int total)
 
 int main()
 {
-    int total = 10000;
+    int total = 1000000;
     std::cout << "素数表 C++";
     clock_t start_time = clock();
     int* primes = generate_primes(total);

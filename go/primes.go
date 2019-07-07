@@ -9,7 +9,7 @@ import (
 )
 
 func generate_primes(total int) []int {
-	var primes [] int
+    var primes [] int
     primes = append(primes, 2)
     var x, j, k int = 1, 0, 1
     for {
