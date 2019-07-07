@@ -11,12 +11,14 @@ class Primes():
         k = 1
         while (k < total):
             x += 2
-            j = 0
+            j = 0;
             while (j < k and x % primes[j] != 0):
-                j += 1
-            if (j == k):
-                primes[k] = x
-                k += 1
+                if (primes[j] * primes[j] >= x):
+                    primes[k] = x
+                    k = k + 1
+                    break
+                j = j + 1
+
         return primes
 
 print("素数表 Python")
@@ -25,13 +27,18 @@ total = 10000
 
 start_time = time.perf_counter()
 primes = p.generate_primes(total)
+end_time = time.perf_counter()
+interval = (end_time - start_time)
+print("")
+print("計算時間：{0}秒".format(interval))
+
+start_time = time.perf_counter()
 for i in range(0, total):
     if (i % 10 == 0):
         print("")
     print("{:<8}".format(primes[i]), end="")
 
 end_time = time.perf_counter()
-
 interval = (end_time - start_time)
 print("")
-print("計：{0}秒".format(interval))
+print("出力時間：{0}秒".format(interval))

@@ -18,8 +18,13 @@ public class Primes
         while (k < total) {
             x += 2;
             j = 0;
-            while (j < k && x % primes[j] != 0) j++;
-            if (j == k) primes[k++] = x;
+            while (j < k && x % primes[j] != 0) {
+                if (primes[j] * primes[j] >= x) {
+                    primes[k++] = x;
+                    break;
+                }
+                j++;
+            }
         }
         return primes;
     }
@@ -32,12 +37,17 @@ public class Primes
         var time = new System.Diagnostics.Stopwatch();
         time.Start();
         int[] primes = p.generate_primes(total);
+        time.Stop();
+        Console.WriteLine("");
+        Console.WriteLine("計算時間：{0}秒", (double)time.ElapsedMilliseconds/1000);
+
+        time.Start();
         for (int i = 0; i < total; i++) {
             if (i % 10 == 0) Console.WriteLine("");
             Console.Write(primes[i].ToString().PadLeft(8, ' '));
         }
         time.Stop();
         Console.WriteLine("");
-        Console.WriteLine("計：{0}秒", (double)time.ElapsedMilliseconds/1000);
+        Console.WriteLine("出力時間：{0}秒", (double)time.ElapsedMilliseconds/1000);
     }
 }

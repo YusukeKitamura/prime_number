@@ -22,13 +22,13 @@ func generate_primes(total int) []int {
         	if j >= k || x % primes[j] == 0 {
                 break
             }
+            if primes[j] * primes[j] > x {
+                k++
+                primes = append(primes, x)
+                break
+            }
             j++
         }
-        if j == k {
-            k++
-            primes = append(primes, x)
-        }
-
     }
     return primes
 }
@@ -38,6 +38,11 @@ func main() {
     var total int = 10000
     start_time := time.Now()
     var primes = generate_primes(total)
+    end_time := time.Now()
+    fmt.Println("")
+    fmt.Printf("計算時間：%f秒\n", (end_time.Sub(start_time)).Seconds())
+
+    start_time = time.Now()
     var i int = 0
     for i < total {
         if i % 10 == 0 {
@@ -46,7 +51,7 @@ func main() {
         fmt.Printf("%8d", primes[i])
         i++
     }
-    end_time := time.Now()
+    end_time = time.Now()
     fmt.Println("")
-    fmt.Printf("計：%f秒\n", (end_time.Sub(start_time)).Seconds())
+    fmt.Printf("出力時間：%f秒\n", (end_time.Sub(start_time)).Seconds())
 }

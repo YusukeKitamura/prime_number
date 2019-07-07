@@ -3,32 +3,46 @@
     node primes.js
 ***********************************************************/
 function generate_primes(n) {
-    var prime = Array(n);
-    prime[0] = 2;
+    var primes = Array(n);
+    primes[0] = 2;
     var x = 1;
     var j = 0;
     var k = 1;
     while (k < n) {
         x += 2;
         j = 0;
-        while (j < k && x % prime[j] != 0) j++;
-        if (j == k) prime[k++] = x;
+        while (j < k && x % primes[j] != 0) {
+            if (primes[j] * primes[j] >= x) {
+                primes[k++] = x;
+                break;
+            }
+            j++;
+        }
     }
 
-    return prime;
+    return primes;
 }
 
 console.log("素数表 JavaScript");
 const Total = 10000;
 
-var startTime = new Date();
-var prime = generate_primes(Total);
-for (var i = 0; i < prime.length; i++) {
+const {
+  performance
+} = require('perf_hooks');
+
+var startTime = performance.now();
+var primes = generate_primes(Total);
+var endTime = performance.now();
+console.log("計算時間：" + (endTime - startTime)/1000.0000 + "秒");
+
+startTime = performance.now();
+for (var i = 0; i < primes.length; i++) {
     if (i % 10 == 0) {
         console.log("");
     }
-    process.stdout.write(("       " + prime[i]).slice(-8));
+    process.stdout.write(("       " + primes[i]).slice(-8));
 }
-var endTime = new Date();
+endTime = performance.now();
 
-console.log("計：" + (endTime - startTime)/1000.0 + "秒");
+console.log("");
+console.log("出力時間：" + (endTime - startTime)/1000.0000 + "秒");
